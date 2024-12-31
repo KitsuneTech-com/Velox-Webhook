@@ -1,0 +1,27 @@
+{
+    "name": "kitsunetech/velox-webhook",
+    "description": "Velox Webhook Dispatcher",
+    "type": "library",
+    "keywords": ["database","webhook"],
+    "support": {
+	"email": "admin@kitsunetech.com"
+    },
+    "require": {
+	"php": ">=8.0.2",
+        "kitsunetech/velox": "dev-main"
+    },
+    "repositories": [
+        {
+            "url": "https://github.com/KitsuneTech-com/Velox-Server.git",
+            "type": "git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "KitsuneTech\\Velox\\Webhook": "src/"
+        },
+        "files": {
+            "src/Support/AsyncWebhookDispatch.php"
+        }
+    }
+}

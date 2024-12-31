@@ -1,5 +1,5 @@
 <?php
-namespace KitsuneTech\Velox\Transport\Webhook;
+namespace KitsuneTech\Velox\Webhook\Classes;
 use KitsuneTech\Velox\Structures\Model as Model;
 use KitsuneTech\Velox\VeloxException;
 use function KitsuneTech\Velox\Transport\Export;
@@ -132,7 +132,7 @@ class RequestController {
         // -i: Identifier
         // -p: Payload
         // Subscriber URLs are appended after options above
-        $dispatchScript = __DIR__ . "/../../Support/AsyncWebhookDispatch.php";
+        $dispatchScript = __DIR__ . "/../Support/AsyncWebhookDispatch.php";
         $identifierOption = $this->identifier ? " -i" . escapeshellarg($this->identifier) : "";
         $command = "php $dispatchScript -p".getmypid()." -c'$contentTypeHeader' -a".$this->retryAttempts . " -r" . $this->retryInterval . $identifierOption. " -f" . escapeshellarg($this->payloadFile) . " " . implode(" ",array_map("escapeshellarg",$this->subscribers));
         // php://fd/3 is the success pipe

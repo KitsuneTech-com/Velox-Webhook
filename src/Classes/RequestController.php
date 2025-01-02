@@ -107,7 +107,7 @@ class RequestController {
         //Write the exported Model data to a file
         $this->payloadFile = @tempnam(sys_get_temp_dir(), "vx-webhook-"); //Normally using @ is a bad idea, but we don't care if tempnam falls back to the system default, so we're suppressing that warning
         if (!$this->payloadFile){
-            throw new VeloxException("Unable to create temporary file for webhook payload", 66);
+            throw new VeloxWebhookException("Unable to create temporary file for webhook payload", 1);
         }
         Export($this->models, TO_FILE+$this->contentType, location: $this->payloadFile, noHeader: true);
         $contentTypeHeader = "Content-Type: ";
@@ -149,7 +149,7 @@ class RequestController {
             stream_set_blocking($pipe,false);
         }
         if (!is_resource($this->process)){
-            throw new VeloxException("Unable to start webhook dispatcher", 67);
+            throw new VeloxWebhookException("Unable to start webhook dispatcher", 2);
         }
     }
     public function close() : void {
